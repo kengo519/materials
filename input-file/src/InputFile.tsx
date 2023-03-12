@@ -7,6 +7,7 @@ const isJSON = (name: string): boolean => {
 
 export const App: React.FC = () => {
   const [name, setName] = useState<string>();
+  const [contents, setContents] = useState<string>();
 
   return (
     <React.Fragment>
@@ -18,6 +19,14 @@ export const App: React.FC = () => {
           // 先頭のファイルを取得
           const file = files[0];
           setName(file.name);
+
+          const reader = new FileReader();
+          // ファイル読み込み完了時に発火するリスナー
+          reader.addEventListener("load", () => {
+            setContents(typeof reader.result === "string" ? reader.result : undefined);
+            console.log(contents);
+          });
+          reader.readAsText(file, 'UTF-8');
         }} />
       </div>
       <button onClick={(): void => {

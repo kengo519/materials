@@ -16,7 +16,6 @@ def is_point_in_polygon(point, polygon):
         if((v_y <= p_y) and (v1_y > p_y)) or ((v_y > p_y) and (v1_y <= p_y)):
             x = v_x + ((p_y - v_y) / (v1_y - v_y)*(v1_x -v_x))
             # 辺上にある場合は内側判定
-            print((v1_y - v_y)*(v1_x -v_x))
             if x == p_x:
                 return True
             elif p_x < x:
